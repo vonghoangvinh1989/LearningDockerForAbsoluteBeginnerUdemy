@@ -1,0 +1,9 @@
+1) Run the tomcat container
+    For example: 
+        docker run -d -it --rm -p 8888:8080 tomcat:9.0 --> run the container tomcat in the background
+        docker exec ca7 ps -eaf --> run the command to show all the process inside the container with id 'ca7...' and we can see
+the tomcat process id with id '1'
+        ps -eaf | grep /opt/java/openjdk --> view the all processes of host machine and see the same process in docker was one of 
+the process of host machine with id 4746
+
+    Note: processes inside the docker actually and afterall the process of host machine which is running in the background

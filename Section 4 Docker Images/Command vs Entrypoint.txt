@@ -1,0 +1,9 @@
+FROM Ubuntu 
+
+ENTRYPOINT ["sleep"]
+
+CMD ["5"]
+
+Note:
+    entrypoint is the default 'command' that container will run with default argument was set in 'cmd', if we specify 'argument'
+    when running the container, it will override the default in 'cmd'

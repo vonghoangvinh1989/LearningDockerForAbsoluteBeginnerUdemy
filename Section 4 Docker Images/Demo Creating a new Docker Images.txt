@@ -1,0 +1,39 @@
+1) Deploy manually with docker
+    docker run -it ubuntu bash --> run docker with base ubuntu and connect to it using terminal bashs
+    apt-get update
+    apt-get install -y python3
+    apt-get install -y pip --> could be python pip if not working
+    pip install flask 
+    cat > /opt/app.py --> paste the source code to terminal and press ctrl + d to close
+    FLASK_APP=/opt/app.py flask run --host=0.0.0.0
+
+
+    *) How to connect to web browser by using internal ip of docker container 
+    + docker inspect container_name --> to get the ip 
+    + open the browser and type the ip of container: 172.0.17.2:5000 to connect to web server with run flask app
+
+2) Create dockerfile and deploy it automatically 
+    + Create a folder with name 'my-simple-webapp'
+    + Create a file with 'Dockerfile' with content 
+
+        From ubuntu
+         
+        RUN apt-get update
+        RUN apt-get install -y python3
+        RUN apt-get install -y pip 
+        RUN pip install flask 
+
+        COPY app.py /opt/app.py 
+
+        ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
+    
+    + Create source code file with name 'app.py' and copy it content
+    + Build the docker image in current folder with 
+        docker build .
+
+        Note: docker build . -t my-simple-webapp --> build again with name for image    
+              docker build . -t vonghoangvinh1989/my-simple-webapp --> build again with name and tag name for image
+
+3) Push to docker hub after creating an account
+    docker login --> login docker with username and password 
+    docker push vonghoangvinh1989/my-simple-webapp --> push docker image to docker hub with images name and tag

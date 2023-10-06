@@ -1,0 +1,54 @@
+1) Docker 'run' command --> run a container from an image and exit immediately, if image do not present, it will pull from docker hub
+    For example:
+        docker run nginx --> run an instance of container nginx
+
+2) Docker 'ps' command --> list all containers and basic information about them
+    For example:
+        docker ps --> list all running containers
+        docker ps -a --> output all running as well as previously stopped or exited containers
+
+3) Docker 'stop' command --> to stop a container: docker stop [docker_name/docker_id], we can check again with docker ps (-a)
+    For example: 
+        docker stop silly_sammet
+
+4) Docker 'rm' command --> to remove a container: docker rm [docker_name], if after the command, the name of container come back,
+we are good to go, we can check with 'docker ps -a' and see the container gone for good
+    For example:
+        docker rm silly_sammet
+
+5) Docker 'images' command --> to list images presented in host with size and name (nginx, ubuntu)
+    For example:
+        docker images
+
+6) Docker 'rmi' command --> to remove the immage we are no longer used
+    For example:
+        docker rmi nginx --> remove the images nginx
+        Note: we have to make sure that no containers are running off of that image before attempting to remove
+
+7) Docker 'pull' command --> only download/keep the image and not running container
+    For example:
+        docker pull nginx --> download the image nginx
+
+8) What if we want to append a command to a container such as 'ubuntu' after running it
+    For example:
+        docker run ubuntu sleep 5 --> when container 'ubuntu' start, it runs the 'sleep' command for five second and close
+
+9) Docker 'exec' command --> to execute a command on docker containers
+    For example:
+        docker ps -a --> see that container with image ubuntu is running 
+        docker exec distracted_mmclintock cat /etc/hosts --> view the file /etc/hosts at container 'distracted_mmclintock'
+
+10) Run - attack and detach
+    For example:
+        docker run kodekloud/simple-webapp --> run container in attach mode, we do not have prompt to do anything
+        docker run -d kodekloud/simple-webapp --> run container in detach mode (container will run in background), and
+    we have terminal prompt to interact
+        docker attach a043d
+
+11) To run a container and connect to it bash shell, we can use command 'bash' with option 'it'
+    For example:
+        docker run -it centos bash --> run bash command in 'centos' container and login directly to the container
+
+12) To run a container from image and set the name
+    For example:
+        docker run -d --name webapp nginx --> run the container in background and set the name is webapp

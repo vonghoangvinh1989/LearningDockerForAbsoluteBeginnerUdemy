@@ -1,0 +1,11 @@
+1) Docker Engine
+    Normally 'docker engine' includes: Docker CLI, Rest API, Docker Daemon but 'Docker CLI' can appear in other host like laptop
+and connect to remote docker enginer: docker -H=remote-docker-engine:2375
+    For example: run the remote docker 'nginx' container with cli 
+        docker -H:10.123.2.1:2375 run nginx
+
+2) How to limit the cpu/memory usage in docker
+    For example: 
+        docker run --cpus=.5 ubuntu --> .5 mean 50%
+        docker run --memory=100m ubuntu --> 100 mean 100 megabytes
+        

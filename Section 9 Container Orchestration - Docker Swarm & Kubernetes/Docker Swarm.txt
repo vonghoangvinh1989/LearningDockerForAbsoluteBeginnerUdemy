@@ -1,0 +1,6 @@
+1) Docker service command to run multiple instances of 'web server application' accross wroker nodes in swarm cluster
+    For example:
+        docker service create --replicas=3 my-web-server --> must be run in manager node, not in workder node
+            Note: --replicas to run the number of instances
+        docker service create --replicas=3 --network frontend my-web-server 
+        docker service create --replicas=3 -p 8080:80 my-web-server

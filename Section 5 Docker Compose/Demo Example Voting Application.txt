@@ -1,0 +1,23 @@
+1) Scenario building voting application architecture manually: github.com/dockersamples/example-voting-app
+    + Step 1) Build the voting-app by manual
+        cd vote
+        docker build . -t voting-app --> build the docker image from the Dockerfile in folder 'vote'
+        docker run -p 5000:80 voting-app --> run the voting-app container and map the port 5000 for external connection, use the browser
+    and trying to connect with address: localhost:5000 to see it runs
+    
+    + Step 2) Run 'redis' container based on redis image in the background
+        docker run -d --name=redis redis
+        docker run -p 5000:80 --link redis:redis voting-app --> run the voting-app container again but this time with redis link
+    
+    + Step 3) Run 'db' container based on postgres image in the background
+        docker run -d --name=db -e POSTGRES_HOST_AUTH_METHOD=trust postgres:15-alpine
+
+    + Step 4) Building the worker by manual
+        cd worker
+        docker build . -t worker-app --> build the docker image from Dockerfile in folder 'worker'
+
+    + Step 5) Building the result by manual 
+        cd result 
+        docker build . -t result-app --> build the image from the Dockerfile in folder 'result'
+        docker run -d -p 5001:80 --link db:db result-app
+

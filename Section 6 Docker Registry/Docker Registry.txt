@@ -1,0 +1,21 @@
+1) Take an example: docker run nginx
+    Image: nginx (same for user and image) --> but actually nginx/nginx
+            + the first nginx: user/account
+            + the second nginx: image/repository
+
+    Where the image pull from: it is assumed to be on dockers default registry - Docker Hub (DNS for Docker.io)
+        Image: docker.io/nginx/nginx
+
+2) Private Registry 
+    docker login private-registry.io
+    docker run private-registry.io/apps/internal-app
+
+3) Deploy Private Registry 
+    docker run -d -p 5000:5000 --name registry registry:2
+    docker image tag my-image localhost:5000/my-image
+    docker push localhost:5000/my-image
+    docker pull localhost:5000/my-image or docker pull 192.168.56.100:5000/my-image
+
+Note:
+    *) Delete all images
+        docker rmi -f $(docker images -aq)

@@ -1,0 +1,32 @@
+1) Docker Networking
+    + Bridge Network: private internal network created by docker by default
+        For example: 
+            docker run ubuntu --> we have to do port mapping if the external would like to connect to the container
+
+    + Host Network:
+        For example: 
+            docker run ubuntu --network=host --> this way we do not need to map port, if the webserver in this container run in port 5000,
+we can connect directly with web browser and port 5000 but we can not run multiple web containers in the same port (5000)
+
+2) User-defined network
+    docker network create --driver bridge --subnet 182.18.0.0/16 custome-isolated-network --> create custom network with subnet
+    docker network create --driver bridge --subnet 182.18.0.0/16 --gateway 182.18.0.1 custome-isolated-network --> create custom network with subnet, gateway
+    docker network ls --> to list all network
+
+    To connect a container to the custom network: we can use --network=customer_network_name
+        docker run -d --name=webapp -p 38080:8080 -e DB_Host=mysql-d -e DB_Password=db_pass123 --network=wp-mysql-network --link mysql-db:mysql-db
+    kodekloud/simple-webapp-mysql
+
+3) To identify network and setting of specific container, we can use the command 'inspect'
+    For example:
+        docker inspect blissful_hopper --> inspect the container blissful_hopper and view the network settings
+
+4) To inspect a network we can use the following command 
+    For example:
+        docker network ls
+        docker network inspect bridge --> to inspect bridge network
+
+Note: Containers can connect to each other by using name, all containers can resolve each other by container name because docker has
+built-in dns server
+
+

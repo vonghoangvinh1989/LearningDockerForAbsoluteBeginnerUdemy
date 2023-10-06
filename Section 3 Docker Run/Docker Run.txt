@@ -1,0 +1,36 @@
+1) Docker Run command with 'tag' to download the specific version of image, if we do not specify the tag, docker will assume
+the default with the lastest version
+    For example:
+        docker run redis:4.0 --> run the docker command to get the redis image of version 4.0
+        Note: redis:4.0 --> is a tag
+
+2) Docker Run and map the host input to the container input with '-i' option (interactive) mode
+    For example:
+        docker run -i kodekloud/simple-prompt-docker
+        docker run -it kodekloud/simple-prompt-docker --> '-t' option with peusdo terminal
+
+3) Map the port of docker container to the port of docker host, we can run many instance of different applications 
+on different ports
+    For example:
+        docker run -p 80:5000 kodekloud/webapp --> map the port 5000 inside the docker container to port 80 of docker host
+(our machine), we can open our browser and run the http://ip:80 to see the website if webapp running
+
+        docker run -p 3306:3306 mysql --> map the port 3306 inside the docker mysql container to port 3306 of docker host
+
+4) Docker Run with Volume Mapping 
+    For example: 
+        docker run mysql --> create and run container based on 'mysql' image
+
+        docker stop mysql 
+        docker rm mysql --> it will delete docker container and all data inside it 
+
+        docker run -v /opt/datadir:/var/lib/mysql mysql --> map the folder '/var/lib/mysql' of docker container to folder
+'/opt/datadir' of docker host, in this case, when we delete the container, somehow we can keep the data folder
+
+5) Docker Inspect command to view the detail information about specific container 'docker inspect container_id/name'
+    For example:
+        docker inspect blissful_hopper --> to inspect a specific container
+
+6) Docker Logs command to view the logs of container
+    For example: 
+        docker logs blissful_hopper

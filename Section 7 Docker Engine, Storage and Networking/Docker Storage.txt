@@ -1,0 +1,18 @@
+1) Create a volume with docker 
+    For example:
+        docker volume create data_volume --> this command will create a folder 'data_volume' under '/var/lib/docker/volumes'
+        docker run -v data_volume:/var/lib/mysql mysql --> run the container with mount the data to the 'data_volume' was created
+
+    Note 1:
+        docker run -v data_volume2:/var/lib/mysql mysql --> if we do not create the volume 'data_volume2' yet and we run this command,
+    docker will automatically create the folder data_volume2 under /var/lib/docker/volumes and mount to the container
+
+        docker run -v /data/mysql:/var/lib/mysql mysql --> in case we would like to mount the folder of container to a specific
+    folder such as '/data/mysql', we have specific the path precisely (this is called bing mounting)
+
+    Note 2:
+        -v: is the old way to write the mounting
+        The new way is using '--mount' with type: mount/bind/tmpfs
+
+        For example: 
+            docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql --> new way of writing docker mount volumes 

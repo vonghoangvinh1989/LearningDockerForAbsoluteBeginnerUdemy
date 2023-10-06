@@ -1,0 +1,21 @@
+1) Run the docker container and execute command
+    docker run ubuntu cat /etc/*release* --> run the container from image ubuntu and run command cat to view the 'release'
+
+2) Run the docker container in background or detached mode
+    docker run -d ubuntu sleep 1500 --> run the container ubuntu with command 'sleep 1500' in the background, terminal will back to use
+    docker attach container_id/name --> to run back the container in the foreground, and the situation happen again 
+
+3) To view the ip of docker container and connnect to that web of that container (access internally)
+    docker run jenkins/jenkins --> run container jenkins and it is a web server
+    docker ps --> to view the port and we can see the port 8080 of container jenkins is running 
+    docker inspect [jenkins_container_id] --> to view the network section and found the ip address,
+here we can open our browser and type jenkins web server ip and port such as: 172.17.0.2:8080 and see the website running
+
+4) How to access to docker container from outside (docker host) / externally, we can map the port to do the same
+    docker run -p 8080:8080 jenkins/jenkins --> run the jenkins container and map the port 8080 of the container to port
+8080 from outside and after that, we can use the ip of docker host to connect to the web app (10.0.2.15:8080)
+
+5) Map the folder of jenkins container data to folder of docker host data
+    docker run -p 8080:8080 -v /root/my-jenkins-data:/var/jenkins_home -u root jenkins/jenkins
+
+    Note: -u root: running with user root permission

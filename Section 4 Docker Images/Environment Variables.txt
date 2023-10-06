@@ -1,0 +1,14 @@
+1) How to set content of docker file receive the environment variable
+    For example:
+        color os.environ.get('APP_COLOR')
+
+    export APP_COLOR=blue; python app.py
+
+    docker run -e APP_COLOR=blue simple-webapp-color
+
+2) How to file the color of container when running, we can use the 'inspect' command, in the conf section
+    docker inspect blissful_hopper
+
+3) Deploy mysql database using mysql image and name it mysql-db 
+    For example:
+        docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 -d mysql

@@ -1,0 +1,18 @@
+1) To view the storage driver of docker, we can use command 'docker info'
+    docker info | less
+
+2) To view the steps that one image was build, we can use the command 'docker history'
+    For example:
+        docker history 9c7 --> 9c7 is the id of image, we can view the steps command that image run when building
+
+3) Build the docker image with specific 'Dockerfile'
+    For example:
+        docker build . -f Dockerfile2 -t sample-webapp2
+
+4) The size in the 'docker images' command do not show exactly the amount of data consumption on disk, they've just show
+the size of image alone, if we would like to see the consumption of data on disk we have to use the command 'docker system df'
+    For example:
+        docker system df
+        docker system df -v --> to view the size in more detail
+
+Note: caching only work from the top to the step we change, the remaining steps will be recreated
